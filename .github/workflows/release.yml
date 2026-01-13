@@ -43,6 +43,22 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+      - name: Debug - Check GPG setup
+        run: |
+          echo "Checking GPG configuration..."
+          gpg --version
+          gpg --list-keys
+          echo "---"
+          if [ -z "$MAVEN_GPG_PASSPHRASE" ]; then
+            echo "❌ ERROR: MAVEN_GPG_PASSPHRASE is NOT set"
+          else
+            echo "✅ MAVEN_GPG_PASSPHRASE is set (length: ${#MAVEN_GPG_PASSPHRASE} characters)"
+          fi
+          echo "---"
+          echo "Testing GPG signing with passphrase..."
+          echo "test" | gpg --batch --pinentry-mode loopback --passphrase "$MAVEN_GPG_PASSPHRASE" --armor --detach-sign || echo "❌ GPG signing test FAILED"
+          echo "GPG test complete"
+
       - name: Update version to release version
         run: |
           mvn versions:set -DnewVersion=${{ github.event.inputs.releaseVersion }} -DgenerateBackupPoms=false
