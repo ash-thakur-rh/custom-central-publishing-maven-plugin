@@ -1,0 +1,11 @@
+bin/
+target
+.class
+.classpath
+.project
+*.prefs
+*.log
+.idea
+*.iml
+.claude
+
