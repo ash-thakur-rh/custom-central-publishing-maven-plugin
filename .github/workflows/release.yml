@@ -49,10 +49,10 @@ jobs:
           git commit -m "Release version ${{ github.event.inputs.releaseVersion }}"
 
       - name: Build and verify
-        run: mvn clean verify -Prelease -Dgpg.passphrase="${MAVEN_GPG_PASSPHRASE}"
+        run: mvn clean verify -Prelease
 
       - name: Deploy to Maven Central
-        run: mvn deploy -Prelease -DskipTests -Dgpg.passphrase="${MAVEN_GPG_PASSPHRASE}"
+        run: mvn deploy -Prelease -DskipTests
 
       - name: Create Git tag
         run: |
