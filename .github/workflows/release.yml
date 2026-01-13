@@ -10,14 +10,15 @@ on:
         description: 'Next development version (e.g., 0.1.1-SNAPSHOT)'
         required: true
 
+env:
+  MAVEN_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+  MAVEN_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+  MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+
 jobs:
   release:
     name: Build and Release
     runs-on: ubuntu-latest
-    env:
-      MAVEN_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
-      MAVEN_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
-      MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
     steps:
       - name: Checkout code
