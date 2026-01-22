@@ -176,7 +176,7 @@ mvn deploy
 
 ### Publishing Full Artifacts (JAR + sources + javadoc)
 
-The plugin can also publish full artifacts with JAR, sources, and javadoc files. Just enable the flags:
+The plugin can also publish full artifacts with JAR, sources, and javadoc files. Just enable the appropriate flags:
 
 ```xml
 <plugin>
